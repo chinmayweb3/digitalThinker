@@ -16,41 +16,36 @@ export function canvasPlane() {
 
   camera.position.set(0, 0, 5);
 
-  // const orbitControls = new OrbitControls(camera, renderer.domElement);
-  // orbitControls.update();
+  const orbitControls = new OrbitControls(camera, renderer.domElement);
+  orbitControls.update();
+
+  const ambientLight = new THREE.AmbientLight(0xffffff, Math.PI);
+  scene.add(ambientLight);
 
   const assetLoader = new GLTFLoader();
 
-  assetLoader.load(
-    "../../assets/raptor.glb",
-    function (gltf) {
-      scene.add(gltf.scene);
-    },
-    undefined,
-    function (error) {
-      console.error(error);
-    }
-  );
-  // let mixer;
-  // assetLoader.load(
-  //   raptorGlb.href,
-  //   function (gltf) {
-  //     const model = gltf.scene;
-  //     scene.add(model);
-  //     mixer = new THREE.AnimationMixer(model);
-  //     const clips = gltf.animations;
+  // a helper to identify  the center of the scene
+  const axes = new THREE.AxesHelper(10);
+  // add the axes to the scene
+  scene.add(axes);
 
-  //     // Play all animations at the same time
-  //     clips.forEach(function (clip) {
-  //       const action = mixer.clipAction(clip);
-  //       action.play();
-  //     });
-  //   },
-  //   undefined,
-  //   function (error) {
-  //     console.error(error);
-  //   }
-  // );
+  let model3d;
+  assetLoader.load(
+    "./raptor.glb",
+    (gltf) => {
+      model3d = gltf.scene;
+
+      model3d.scale.set(0.1, 0.1, 0.1);
+      model3d.position.set(0, 0, -1);
+
+      model3d.rotation.y = -0.5 * Math.PI;
+      scene.add(model3d);
+    },
+    // called while loading is progressing
+    (xhr) => console.log((xhr.loaded / xhr.total) * 100 + "% loaded"),
+    // called when loading has errors
+    (error) => console.log("An error happened", error)
+  );
 
   const boxGeometry = new THREE.BoxGeometry(1, 2);
   // MeshBasicMaterial is a skin like CSS
@@ -58,6 +53,9 @@ export function canvasPlane() {
 
   // Mesh is something that connects the two independent instance boxGeometry and MeshBasicMaterial
   const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
+  boxMesh.scale.set(1, 1, 1);
+  boxMesh.rotation.y = -0.25 * Math.PI;
+  // boxMesh.position.set(10, 0, 0);
   // and the add, adds the box mesh to the scene
   // scene.add(boxMesh);
 
@@ -66,8 +64,6 @@ export function canvasPlane() {
   // scene.add(grid);
 
   const animate = (time) => {
-    // boxMesh.rotation.z = time / 1000;
-    // boxMesh.rotation.y = time / 1000;
     // renderer .render runs the scene on to the getmainId which will render it to the screen
     renderer.render(scene, camera);
   };
