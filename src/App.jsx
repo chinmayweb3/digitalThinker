@@ -10,7 +10,10 @@ function App() {
       <ReactLenis root>
         {preloader && <Preloader preloader={preloader} setPreloader={setPreloader} />}
         <Canva />
-        <section className="full-screen flex-center bg-[#999] text-white">lksdfjklsdfjkskkj</section>
+        <section className="full-screen flex-center bg-[#999] text-white text-[72px]">
+          <h2 className="z-[21]">sdklfj lkjjlk</h2>
+          <h2 className="z-[19]">sdklfj lkjjkl lkjjlk</h2>
+        </section>
         <section className="full-screen flex-center bg-amber-300 text-white">lksdfjklsdfjkskkj</section>
       </ReactLenis>
     </>

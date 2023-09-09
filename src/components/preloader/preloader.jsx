@@ -63,7 +63,7 @@ const Preloader = ({ preloader, setPreloader }) => {
   }, []);
 
   return (
-    <section id="preload-top" className="fixed z-[10] full-screen flex-center bg-gradient-to-tr from-[#bb9012] to-[#c9ac0b] overflow-hidden">
+    <section id="preload-top" className="fixed z-[50] full-screen flex-center bg-gradient-to-tr from-[#bb9012] to-[#c9ac0b] overflow-hidden">
       <motion.div
         id="preloader-title"
         variants={textInit}

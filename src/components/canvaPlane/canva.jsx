@@ -6,7 +6,7 @@ const Canva = () => {
   useEffect(() => {
     canvasPlane();
   }, []);
-  return <section id="canvas-plane" className="fixed z-[2] full-screen"></section>;
+  return <section id="canvas-plane" className="fixed z-[20] full-screen"></section>;
 };
 
 export default Canva;

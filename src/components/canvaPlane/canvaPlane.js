@@ -47,14 +47,14 @@ export function canvasPlane() {
     (error) => console.log("An error happened", error)
   );
 
-  const boxGeometry = new THREE.BoxGeometry(1, 2);
+  // const boxGeometry = new THREE.BoxGeometry(1, 2);
   // MeshBasicMaterial is a skin like CSS
-  const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+  // const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 
   // Mesh is something that connects the two independent instance boxGeometry and MeshBasicMaterial
-  const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
-  boxMesh.scale.set(1, 1, 1);
-  boxMesh.rotation.y = -0.25 * Math.PI;
+  // const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
+  // boxMesh.scale.set(1, 1, 1);
+  // boxMesh.rotation.y = -0.25 * Math.PI;
   // boxMesh.position.set(10, 0, 0);
   // and the add, adds the box mesh to the scene
   // scene.add(boxMesh);
@@ -65,6 +65,7 @@ export function canvasPlane() {
 
   const animate = (time) => {
     // renderer .render runs the scene on to the getmainId which will render it to the screen
+
     renderer.render(scene, camera);
   };
 
