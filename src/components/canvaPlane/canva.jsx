@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./canva.scss";
-import { useCanvasPlane } from "./canvaPlane.js";
+import { useCanvasPlane } from "./canvaPlane.jsx";
 const Canva = ({ preloader, setPreloader }) => {
   useCanvasPlane(preloader);
 

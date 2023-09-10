@@ -3,7 +3,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { GUI } from "dat.gui";
 import { Back, Elastic, gsap } from "gsap";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const sizes = {
   width: window.innerWidth,
@@ -39,6 +39,9 @@ const movement = [
 ];
 
 export const useCanvasPlane = (preloader) => {
+  // let model3d;
+  const [modelState, setModelState] = useState();
+
   useEffect(() => {
     const canvasPlane = document.getElementById("canvas-plane");
 
@@ -69,6 +72,7 @@ export const useCanvasPlane = (preloader) => {
       "./sukhoi.glb",
       (glb) => {
         model3d = glb.scene;
+        setModelState(model3d);
 
         model3d.scale.set(0.1, 0.1, 0.1);
         model3d.position.x = Math.PI * 3;
@@ -91,19 +95,18 @@ export const useCanvasPlane = (preloader) => {
     );
 
     // scroll animation started
-    // scroll animation started
     let scrollY = window.scrollY;
     let currentSection = 0;
-    if (preloader && model3d) {
-      gsap.to(model3d.rotation, {
-        duration: 1,
-        // delay: 4,
-        x: movement[newSection].rotationX,
-        y: movement[newSection].rotationY,
-        z: movement[newSection].rotationZ,
-        ease: Back.easeInOut(1),
-      });
-    }
+    // if (preloader && model3d) {
+    //   gsap.to(model3d.rotation, {
+    //     duration: 1,
+    //     // delay: 4,
+    //     x: movement[newSection].rotationX,
+    //     y: movement[newSection].rotationY,
+    //     z: movement[newSection].rotationZ,
+    //     ease: Back.easeInOut(1),
+    //   });
+    // }
 
     window.addEventListener("scroll", () => {
       scrollY = window.scrollY;
@@ -141,6 +144,25 @@ export const useCanvasPlane = (preloader) => {
 
     renderer.setAnimationLoop(animate);
   }, []);
+
+  useEffect(() => {
+    console.log("insdisdfsdffd", preloader, modelState);
+    if (!preloader && modelState) {
+      gsap.to(modelState.rotation, {
+        duration: 1,
+        x: movement[0].rotationX,
+        y: movement[0].rotationY,
+        z: movement[0].rotationZ,
+        ease: Back.easeInOut(1),
+      });
+      gsap.to(modelState.position, {
+        duration: 1,
+        x: movement[0].positionX,
+        y: movement[0].positionY,
+        z: movement[0].positionZ,
+      });
+    }
+  }, [preloader, modelState]);
 };
 
 const model3dGui = (model3d) => {
