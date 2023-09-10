@@ -12,13 +12,16 @@ body {
   overflow: hidden;
 }
 
-.main {
+main {
   box-sizing: border-box;
   scroll-snap-type: y mandatory;
+  overflow: auto;
 }
 
 section {
   height: 100vh;
+}
+.full-screen {
   scroll-snap-align: start;
 }
 
