@@ -11,10 +11,10 @@ function App() {
       <main className="main">
         {/* <ReactLenis root> */}
         {preloader && <Preloader preloader={preloader} setPreloader={setPreloader} />}
-        <Canva />
+        <Canva preloader={preloader} setPreloader={setPreloader} />
         <FirstSection preloader={preloader} setPreloader={setPreloader} />
         <section className="full-screen flex-center bg-amber-300 text-white">lksdfjklsdfjkskkj</section>
-        <section className="full-screen flex-center bg-amber-300 text-white">lksdfjklsdfjkskkj</section>
+        <section className="full-screen flex-center bg-rose-400 text-white">lksdfjklsdfjkskkj</section>
         {/* </ReactLenis> */}
       </main>
     </>
