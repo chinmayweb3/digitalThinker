@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { GUI } from "dat.gui";
-import { Back, Elastic, gsap } from "gsap";
+import { Back, gsap } from "gsap";
 import { useEffect, useState } from "react";
 
 const sizes = {
@@ -18,41 +18,49 @@ const movement = [
     positionX: Math.PI * 1,
     positionY: 0,
     positionZ: 0,
+    scaleX: 0.13,
+    scaleY: 0.13,
+    scaleZ: 0.13,
   },
 
   {
-    rotationX: 0.2,
-    rotationY: 0.2,
-    rotationZ: 0.2,
-    positionX: 0,
+    rotationX: 0.5,
+    rotationY: 1,
+    rotationZ: 0,
+    positionX: -3,
     positionY: 0,
     positionZ: 0,
+    scaleX: 0.13,
+    scaleY: 0.13,
+    scaleZ: 0.13,
   },
   {
     rotationX: 0.5,
-    rotationY: 0.5,
-    rotationZ: 0.5,
+    rotationY: 0.8,
+    rotationZ: 30,
     positionX: 0,
     positionY: 0,
-    positionZ: 0,
+    positionZ: -6,
+    scaleX: 0.25,
+    scaleY: 0.25,
+    scaleZ: 0.25,
   },
 ];
 
 export const useCanvasPlane = (preloader) => {
-  // let model3d;
   const [modelState, setModelState] = useState();
 
   useEffect(() => {
     const canvasPlane = document.getElementById("canvas-plane");
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(sizes.width, sizes.height);
 
     canvasPlane.append(renderer.domElement);
 
     const scene = new THREE.Scene();
 
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000);
     camera.position.set(0, 0, 5);
 
     // const orbitControls = new OrbitControls(camera, renderer.domElement);
@@ -74,21 +82,15 @@ export const useCanvasPlane = (preloader) => {
         model3d = glb.scene;
         setModelState(model3d);
 
-        model3d.scale.set(0.1, 0.1, 0.1);
+        model3d.scale.set(0.13, 0.13, 0.13);
         model3d.position.x = Math.PI * 3;
-        model3d.position.x = Math.PI * 3;
-        // model3d.rotation.x = Math.PI * 1;
         model3d.rotation.y = -1;
-        // model3d.rotation.z = -1;
-        // model3d.rotation.x = 1;
 
         scene.add(model3d);
-        model3dGui(model3d);
       },
       (xhr) => {
         // console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
       },
-      // called when loading has errors
       (err) => {
         console.log(" \n\n\n\nAn error happened", err);
       }
@@ -97,44 +99,37 @@ export const useCanvasPlane = (preloader) => {
     // scroll animation started
     let scrollY = window.scrollY;
     let currentSection = 0;
-    // if (preloader && model3d) {
-    //   gsap.to(model3d.rotation, {
-    //     duration: 1,
-    //     // delay: 4,
-    //     x: movement[newSection].rotationX,
-    //     y: movement[newSection].rotationY,
-    //     z: movement[newSection].rotationZ,
-    //     ease: Back.easeInOut(1),
-    //   });
-    // }
-
     window.addEventListener("scroll", () => {
       scrollY = window.scrollY;
-      const newSection = Math.round(scrollY / window.innerHeight);
+      const newSection = Math.round(scrollY / sizes.height);
       console.log("New section scrollY: " + newSection, currentSection);
 
-      // if (currentSection !== newSection) {
       if (!!model3d) {
         gsap.to(model3d.rotation, {
-          duration: 1,
+          duration: 1.2,
           x: movement[newSection].rotationX,
           y: movement[newSection].rotationY,
           z: movement[newSection].rotationZ,
           ease: Back.easeInOut(1),
         });
         gsap.to(model3d.position, {
-          duration: 1,
+          duration: 1.2,
           x: movement[newSection].positionX,
           y: movement[newSection].positionY,
           z: movement[newSection].positionZ,
+          ease: Back.easeInOut(1),
+        });
+        gsap.to(model3d.scale, {
+          duration: 1.2,
+          ease: Back.easeInOut(1),
+          x: movement[newSection].scaleX,
+          y: movement[newSection].scaleY,
+          z: movement[newSection].scaleZ,
         });
       }
-      // }
     });
 
     const animate = (time) => {
-      // renderer .render runs the scene on to the getmainId which will render it to the screen
-      // boxMesh.rotation.y = Math.sin(time / 1000);
       if (model3d) {
         model3d.position.y = Math.sin(time / 1000) * 0.1;
         model3d.rotation.z = Math.sin(time / 1000) * 0.08;
@@ -146,7 +141,6 @@ export const useCanvasPlane = (preloader) => {
   }, []);
 
   useEffect(() => {
-    console.log("insdisdfsdffd", preloader, modelState);
     if (!preloader && modelState) {
       gsap.to(modelState.rotation, {
         duration: 1,
@@ -160,6 +154,12 @@ export const useCanvasPlane = (preloader) => {
         x: movement[0].positionX,
         y: movement[0].positionY,
         z: movement[0].positionZ,
+      });
+      gsap.to(modelState.scale, {
+        duration: 1,
+        x: movement[0].scaleX,
+        y: movement[0].scaleY,
+        z: movement[0].scaleZ,
       });
     }
   }, [preloader, modelState]);

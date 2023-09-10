@@ -18,7 +18,7 @@ function App() {
     <>
       <ReactLenis root>
         {preloader && <Preloader preloader={preloader} setPreloader={setPreloader} />}
-        <main className="main">
+        <main id="main">
           <Canva preloader={preloader} setPreloader={setPreloader} />
           <FirstSection preloader={preloader} setPreloader={setPreloader} />
           <section className="full-screen flex-center bg-amber-300 text-white">lksdfjklsdfjkskkj</section>

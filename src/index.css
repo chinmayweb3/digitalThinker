@@ -15,14 +15,17 @@ body {
 main {
   box-sizing: border-box;
   scroll-snap-type: y mandatory;
-  overflow: auto;
 }
 
 section {
   height: 100vh;
 }
 .full-screen {
+  overflow-y: scroll;
+
   scroll-snap-align: start;
+
+  scroll-snap-stop: normal;
 }
 
 .dg {
