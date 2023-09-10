@@ -21,6 +21,7 @@ const movement = [
     scaleX: 0.13,
     scaleY: 0.13,
     scaleZ: 0.13,
+    bg: "#deb887",
   },
 
   {
@@ -33,17 +34,19 @@ const movement = [
     scaleX: 0.13,
     scaleY: 0.13,
     scaleZ: 0.13,
+    bg: "#aaa",
   },
   {
     rotationX: 0.5,
     rotationY: 0.8,
-    rotationZ: 30,
+    rotationZ: Math.PI * 10,
     positionX: 0,
     positionY: 0,
     positionZ: -6,
-    scaleX: 0.25,
-    scaleY: 0.25,
-    scaleZ: 0.25,
+    scaleX: 0.3,
+    scaleY: 0.3,
+    scaleZ: 0.3,
+    bg: "#141414",
   },
 ];
 
@@ -72,7 +75,7 @@ export const useCanvasPlane = (preloader) => {
     // a helper to identify  the center of the scene
     const axes = new THREE.AxesHelper(10);
     // add the axes to the scene
-    scene.add(axes);
+    // scene.add(axes);
 
     let model3d;
     const assetLoader = new GLTFLoader();
@@ -103,6 +106,7 @@ export const useCanvasPlane = (preloader) => {
       scrollY = window.scrollY;
       const newSection = Math.round(scrollY / sizes.height);
       console.log("New section scrollY: " + newSection, currentSection);
+      document.getElementById("main").style.backgroundColor = movement[newSection].bg;
 
       if (!!model3d) {
         gsap.to(model3d.rotation, {
