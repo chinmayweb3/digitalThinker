@@ -2,10 +2,10 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
-export function canvasPlane() {
+export async function canvasPlane() {
   const canvasPlane = document.getElementById("canvas-plane");
 
-  const renderer = new THREE.WebGLRenderer({ alpha: true });
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
 
   canvasPlane.append(renderer.domElement);
@@ -16,8 +16,8 @@ export function canvasPlane() {
 
   camera.position.set(0, 0, 5);
 
-  const orbitControls = new OrbitControls(camera, renderer.domElement);
-  orbitControls.update();
+  // const orbitControls = new OrbitControls(camera, renderer.domElement);
+  // orbitControls.update();
 
   const ambientLight = new THREE.AmbientLight(0xffffff, Math.PI);
   scene.add(ambientLight);
@@ -32,32 +32,36 @@ export function canvasPlane() {
   let model3d;
   assetLoader.load(
     "./raptor.glb",
-    (gltf) => {
-      model3d = gltf.scene;
+    (glb) => {
+      model3d = glb.scene;
 
       model3d.scale.set(0.1, 0.1, 0.1);
-      model3d.position.set(0, 0, -1);
 
-      model3d.rotation.y = -0.5 * Math.PI;
+      model3d.position.set(0, 0, -1);
+      model3d.rotation.y = -0.65 * Math.PI;
+      model3d.rotation.z = -0.1 * Math.PI;
       scene.add(model3d);
     },
-    // called while loading is progressing
-    (xhr) => console.log((xhr.loaded / xhr.total) * 100 + "% loaded"),
+    (xhr) => {
+      console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+    },
     // called when loading has errors
-    (error) => console.log("An error happened", error)
+    (err) => {
+      console.log("An error happened", err);
+    }
   );
 
-  // const boxGeometry = new THREE.BoxGeometry(1, 2);
+  const boxGeometry = new THREE.BoxGeometry(1, 2);
   // MeshBasicMaterial is a skin like CSS
-  // const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+  const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 
   // Mesh is something that connects the two independent instance boxGeometry and MeshBasicMaterial
-  // const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
-  // boxMesh.scale.set(1, 1, 1);
+  const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
+  boxMesh.scale.set(1, 1, 1);
   // boxMesh.rotation.y = -0.25 * Math.PI;
   // boxMesh.position.set(10, 0, 0);
   // and the add, adds the box mesh to the scene
-  // scene.add(boxMesh);
+  scene.add(boxMesh);
 
   // grid is something same as axishelper
   // const grid = new THREE.GridHelper(5, 5);
@@ -65,6 +69,9 @@ export function canvasPlane() {
 
   const animate = (time) => {
     // renderer .render runs the scene on to the getmainId which will render it to the screen
+
+    console.log("time: " + time, 0.1 * Math.PI, Math.sin(time * 0.1));
+    boxMesh.rotation.y = Math.sin(time / 1000);
 
     renderer.render(scene, camera);
   };

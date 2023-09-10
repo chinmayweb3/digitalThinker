@@ -8,12 +8,15 @@ function App() {
   const [preloader, setPreloader] = useState(true);
   return (
     <>
-      <ReactLenis root>
+      <main className="main">
+        {/* <ReactLenis root> */}
         {preloader && <Preloader preloader={preloader} setPreloader={setPreloader} />}
         <Canva />
         <FirstSection preloader={preloader} setPreloader={setPreloader} />
         <section className="full-screen flex-center bg-amber-300 text-white">lksdfjklsdfjkskkj</section>
-      </ReactLenis>
+        <section className="full-screen flex-center bg-amber-300 text-white">lksdfjklsdfjkskkj</section>
+        {/* </ReactLenis> */}
+      </main>
     </>
   );
 }
