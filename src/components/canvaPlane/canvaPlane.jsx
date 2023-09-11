@@ -56,7 +56,7 @@ export const useCanvasPlane = (preloader) => {
   useEffect(() => {
     const canvasPlane = document.getElementById("canvas-plane");
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, precision: "highp" });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(sizes.width, sizes.height);
 
     canvasPlane.append(renderer.domElement);
@@ -70,19 +70,13 @@ export const useCanvasPlane = (preloader) => {
     // orbitControls.update();
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 5);
-    const directionalLight = new THREE.DirectionalLight(0x999999, 3);
-    directionalLight.position.y = 10;
+    const spotLight = new THREE.PointLight(0xffffff, 150);
 
-    // const pointHelper = new THREE.DirectionalLightHelper(directionalLight);
+    spotLight.position.y = 8;
 
     scene.add(ambientLight);
-    scene.add(directionalLight);
-    // scene.add(pointHelper);
-
-    // a helper to identify  the center of the scene
+    scene.add(spotLight);
     const axes = new THREE.AxesHelper(10);
-    // add the axes to the scene
-    // scene.add(axes);
 
     let model3d;
     const assetLoader = new GLTFLoader();
