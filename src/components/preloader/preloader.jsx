@@ -19,7 +19,7 @@ const textInit = {
 
 const Preloader = ({ preloader, setPreloader }) => {
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // window.scrollTo({ top: 0, behavior: "smooth" });
     const t1 = gsap.timeline();
     t1.to(
       "#preloader-round",

@@ -56,7 +56,7 @@ export const useCanvasPlane = (preloader) => {
   useEffect(() => {
     const canvasPlane = document.getElementById("canvas-plane");
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, precision: "highp" });
     renderer.setSize(sizes.width, sizes.height);
 
     canvasPlane.append(renderer.domElement);
@@ -69,8 +69,15 @@ export const useCanvasPlane = (preloader) => {
     // const orbitControls = new OrbitControls(camera, renderer.domElement);
     // orbitControls.update();
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, Math.PI);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 5);
+    const directionalLight = new THREE.DirectionalLight(0x999999, 3);
+    directionalLight.position.y = 10;
+
+    // const pointHelper = new THREE.DirectionalLightHelper(directionalLight);
+
     scene.add(ambientLight);
+    scene.add(directionalLight);
+    // scene.add(pointHelper);
 
     // a helper to identify  the center of the scene
     const axes = new THREE.AxesHelper(10);
@@ -98,6 +105,10 @@ export const useCanvasPlane = (preloader) => {
         console.log(" \n\n\n\nAn error happened", err);
       }
     );
+
+    window.addEventListener("beforeunload", () => {
+      window.scrollTo(0, 0);
+    });
 
     // scroll animation started
     let scrollY = window.scrollY;
