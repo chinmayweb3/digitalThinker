@@ -73,9 +73,10 @@ const Preloader = ({ preloader, setPreloader }) => {
         initial="hidden"
         animate="visible"
         transition={{ delay: 0.3, duration: 1 }}
-        className="h-[300px]"
+        className="h-[300px] font-orbitron text-center"
       >
-        <h2 className="font-serif text-[72px] text-offBlack ">The MF 22 RAFTER</h2>
+        <h2 className="text-[64px] tracking-[5px] font-semibold text-offBlack uppercase ">The Fighter Jet - SUKHOI</h2>
+        <p className="text-[18px] tracking-[10px] uppercase">Sukhoi Su-57 Felon is a Russian-made</p>
       </motion.div>
       <div
         style={{ transform: "translateY(60%)" }}

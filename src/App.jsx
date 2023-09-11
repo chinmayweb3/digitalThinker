@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Preloader from "./components/preloader/preloader";
 import Canva from "./components/canvaPlane/canva";
 import FirstSection from "./components/firstSection/firstSec";
-import { Elastic, gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ReactLenis } from "@studio-freight/react-lenis";
-import { Power4 } from "gsap";
-
-gsap.registerPlugin(ScrollTrigger);
+import Navbar from "./components/navbar/nav";
 
 function App() {
   const [preloader, setPreloader] = useState(true);
@@ -17,10 +13,15 @@ function App() {
       <ReactLenis root>
         {preloader && <Preloader preloader={preloader} setPreloader={setPreloader} />}
         <main id="main">
+          <Navbar />
           <Canva preloader={preloader} setPreloader={setPreloader} />
           <FirstSection preloader={preloader} setPreloader={setPreloader} />
-          <section className="full-screen flex-center text-white">lksdfjklsdfjkskkj</section>
-          <section className="full-screen flex-center text-white">lksdfjklsdfjkskkj</section>
+          <section id="about" className="full-screen flex-center text-white">
+            lksdfjklsdfjkskkj
+          </section>
+          <section id="jet" className="full-screen flex-center text-white ">
+            lksdfjklsdfjkskkj
+          </section>
         </main>
       </ReactLenis>
     </>

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,6 +9,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* scroll-behavior: smooth; */
 }
 body {
   overflow: hidden;
@@ -16,7 +19,7 @@ main {
   box-sizing: border-box;
   scroll-snap-type: y mandatory;
   background-color: #deb887;
-  transition: 2s background-color;
+  transition: 2s all;
 }
 
 section {
@@ -40,5 +43,8 @@ section {
   }
   .flex-center {
     @apply flex justify-center items-center;
+  }
+  .navbar-cta {
+    @apply h-full grid place-content-center text-center  px-[20px] hover:bg-white/25 duration-200 tracking-[3px] font-normal;
   }
 }
