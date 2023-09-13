@@ -5,11 +5,6 @@ import { GUI } from "dat.gui";
 import { Back, gsap } from "gsap";
 import { useEffect, useState } from "react";
 
-const sizes = {
-  width: window.innerWidth,
-  height: window.innerHeight,
-};
-
 const movement = [
   {
     rotationX: 1,
@@ -55,6 +50,10 @@ const movement = [
 
 export const useCanvasPlane = (preloader) => {
   const [modelState, setModelState] = useState();
+  const sizes = {
+    width: window.innerWidth,
+    height: window.innerHeight,
+  };
 
   useEffect(() => {
     const canvasPlane = document.getElementById("canvas-plane");
@@ -161,13 +160,17 @@ export const useCanvasPlane = (preloader) => {
   useEffect(() => {
     const scrollY = window.scrollY;
     const newSection = Math.round(scrollY / sizes.height);
-
-    gsap.to(".nav-text-font", {
-      duration: 1.2,
-      color: movement[newSection].color,
-    });
+    let currentSection = 0;
 
     if (!preloader && modelState) {
+      gsap.to(".navbar-cta", {
+        duration: 1.2,
+        color: movement[newSection].color,
+      });
+      gsap.to(".nav-line", {
+        duration: 1.2,
+        backgroundColor: movement[newSection].color,
+      });
       gsap.to(modelState.rotation, {
         duration: 1,
         x: movement[newSection].rotationX,

@@ -4,6 +4,8 @@ import Canva from "./components/canvaPlane/canva";
 import FirstSection from "./components/firstSection/firstSec";
 import { ReactLenis } from "@studio-freight/react-lenis";
 import Navbar from "./components/navbar/nav";
+import SecondSection from "./components/secondSection/secondSection";
+import ThirdSection from "./components/thirdSection/thirdSection";
 
 function App() {
   const [preloader, setPreloader] = useState(true);
@@ -15,13 +17,12 @@ function App() {
         <main id="main">
           <Navbar />
           <Canva preloader={preloader} setPreloader={setPreloader} />
+
           <FirstSection />
-          <section id="about" className="full-screen flex-center text-white">
-            lksdfjklsdfjkskkj
-          </section>
-          <section id="jet" className="full-screen flex-center text-white ">
-            <h2 className="z-[21] mix-blend-difference text-[72px] ">lksdfjklsdfjkskkj</h2>
-          </section>
+
+          <SecondSection />
+
+          <ThirdSection />
         </main>
       </ReactLenis>
     </>

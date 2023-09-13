@@ -4,7 +4,7 @@ const Navbar = () => {
   useEffect(() => {}, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-[21]">
+    <nav className="fixed top-0 left-0 w-full z-[25] backdrop-blur-lg ">
       <div className="mx-auto w-[90%] h-[66px] flex justify-between items-center">
         <h1 className="font-black ">sdklfj</h1>
         <div className=" flex h-full font-orbitron mix-blend-difference tracking-[50px] text-[10px]">
