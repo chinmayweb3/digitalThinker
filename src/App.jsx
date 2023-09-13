@@ -20,7 +20,7 @@ function App() {
             lksdfjklsdfjkskkj
           </section>
           <section id="jet" className="full-screen flex-center text-white ">
-            lksdfjklsdfjkskkj
+            <h2 className="z-[21] mix-blend-difference text-[72px] ">lksdfjklsdfjkskkj</h2>
           </section>
         </main>
       </ReactLenis>

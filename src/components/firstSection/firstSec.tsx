@@ -2,7 +2,7 @@ import React from "react";
 
 const FirstSection = ({ preloader, setPreloader }) => {
   return (
-    <section id="home" className="full-screen flex-center text-white text-[72px]">
+    <section id="home" className="full-screen flex-center text-white text-[72px] mix-blend-difference">
       <h2 className="z-[19]">sdklfj lkjjlk</h2>
       <h2 className="z-[19]">sdklfj lkjjkl lkjjlk</h2>
     </section>

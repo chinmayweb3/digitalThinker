@@ -100,9 +100,9 @@ export const useCanvasPlane = (preloader) => {
       }
     );
 
-    window.addEventListener("beforeunload", () => {
-      window.scrollTo(0, 0);
-    });
+    // window.addEventListener("beforeunload", () => {
+    //   window.scrollTo(0, 0);
+    // });
 
     // scroll animation started
     let scrollY = window.scrollY;
