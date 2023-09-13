@@ -15,7 +15,7 @@ function App() {
         <main id="main">
           <Navbar />
           <Canva preloader={preloader} setPreloader={setPreloader} />
-          <FirstSection preloader={preloader} setPreloader={setPreloader} />
+          <FirstSection />
           <section id="about" className="full-screen flex-center text-white">
             lksdfjklsdfjkskkj
           </section>

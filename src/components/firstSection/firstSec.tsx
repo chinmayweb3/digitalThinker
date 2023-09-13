@@ -1,6 +1,6 @@
 import React from "react";
 
-const FirstSection = ({ preloader, setPreloader }) => {
+const FirstSection = () => {
   return (
     <section id="home" className="full-screen flex-center justify-start mx-auto w-[90%] ">
       <div className="z-[21]">
