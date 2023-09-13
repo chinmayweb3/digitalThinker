@@ -1,6 +1,8 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
+
 import { GUI } from "dat.gui";
 import { Back, gsap } from "gsap";
 import { useEffect, useState } from "react";
@@ -78,14 +80,36 @@ export const useCanvasPlane = (preloader) => {
 
     scene.add(ambientLight);
     scene.add(spotLight);
-    const axes = new THREE.AxesHelper(10);
+
+    // const axes = new THREE.AxesHelper(10);
 
     let model3d;
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath("../../../node_modules/three/examples/jsm/libs/draco/");
+
     const assetLoader = new GLTFLoader();
+
+    assetLoader.setDRACOLoader(dracoLoader);
     assetLoader.load(
-      "./compressed.glb",
+      "./compressed2.glb",
       (glb) => {
         model3d = glb.scene;
+
+        // model3d.scene.traverse(function (child) {
+        //   if (child.isMesh) {
+        //     const m = child;
+        //     m.receiveShadow = true;
+        //     m.castShadow = true;
+        //   }
+        //   if (child.isLight) {
+        //     const l = child;
+        //     l.castShadow = true;
+        //     l.shadow.bias = -0.003;
+        //     l.shadow.mapSize.width = 2048;
+        //     l.shadow.mapSize.height = 2048;
+        //   }
+        // });
+
         setModelState(model3d);
 
         model3d.scale.set(0.13, 0.13, 0.13);
