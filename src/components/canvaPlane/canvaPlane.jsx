@@ -83,7 +83,7 @@ export const useCanvasPlane = (preloader) => {
     let model3d;
     const assetLoader = new GLTFLoader();
     assetLoader.load(
-      "./sukhoi.glb",
+      "./compressed.glb",
       (glb) => {
         model3d = glb.scene;
         setModelState(model3d);
