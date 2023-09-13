@@ -12,19 +12,19 @@ function App() {
 
   return (
     <>
-      <ReactLenis root>
-        {preloader && <Preloader preloader={preloader} setPreloader={setPreloader} />}
-        <main id="main">
-          <Navbar />
-          <Canva preloader={preloader} setPreloader={setPreloader} />
+      {/* <ReactLenis root > */}
+      {preloader && <Preloader preloader={preloader} setPreloader={setPreloader} />}
+      <main id="main">
+        <Navbar />
+        <Canva preloader={preloader} setPreloader={setPreloader} />
 
-          <FirstSection />
+        <FirstSection />
 
-          <SecondSection />
+        <SecondSection />
 
-          <ThirdSection />
-        </main>
-      </ReactLenis>
+        <ThirdSection />
+      </main>
+      {/* </ReactLenis> */}
     </>
   );
 }
