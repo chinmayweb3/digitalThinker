@@ -85,7 +85,7 @@ export const useCanvasPlane = (preloader) => {
 
     let model3d;
     const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath("../../../node_modules/three/examples/jsm/libs/draco/");
+    dracoLoader.setDecoderPath("https://www.gstatic.com/draco/v1/decoders/");
 
     const assetLoader = new GLTFLoader();
 
