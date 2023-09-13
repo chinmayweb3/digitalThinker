@@ -9,10 +9,11 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* scroll-behavior: smooth; */
+  scroll-behavior: smooth;
 }
 body {
   overflow: hidden;
+  height: 100vh;
 }
 
 main {
@@ -40,7 +41,7 @@ section {
 
 @layer components {
   .full-screen {
-    @apply min-h-screen w-full h-full;
+    @apply h-screen w-full;
   }
   .flex-center {
     @apply flex justify-center items-center;

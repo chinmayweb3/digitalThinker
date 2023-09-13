@@ -95,21 +95,6 @@ export const useCanvasPlane = (preloader) => {
       (glb) => {
         model3d = glb.scene;
 
-        // model3d.scene.traverse(function (child) {
-        //   if (child.isMesh) {
-        //     const m = child;
-        //     m.receiveShadow = true;
-        //     m.castShadow = true;
-        //   }
-        //   if (child.isLight) {
-        //     const l = child;
-        //     l.castShadow = true;
-        //     l.shadow.bias = -0.003;
-        //     l.shadow.mapSize.width = 2048;
-        //     l.shadow.mapSize.height = 2048;
-        //   }
-        // });
-
         setModelState(model3d);
 
         model3d.scale.set(0.13, 0.13, 0.13);
@@ -133,7 +118,7 @@ export const useCanvasPlane = (preloader) => {
     window.addEventListener("scroll", () => {
       scrollY = window.scrollY;
       const newSection = Math.round(scrollY / sizes.height);
-      console.log("New section scrollY: " + newSection, currentSection);
+      // console.log("New section scrollY: " + newSection, currentSection);
       document.getElementById("main").style.backgroundColor = movement[newSection].bg;
 
       gsap.to(".navbar-cta", {

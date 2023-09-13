@@ -54,8 +54,8 @@ const Preloader = ({ preloader, setPreloader }) => {
           width: "200%",
           height: "300%",
           onComplete: () => {
-            document.getElementsByTagName("body")[0].style.overflow = "auto";
             setPreloader(false);
+            document.getElementsByTagName("body")[0].style.overflow = "auto";
           },
         },
         3
@@ -64,8 +64,9 @@ const Preloader = ({ preloader, setPreloader }) => {
 
   return (
     <section
+      style={{ overflow: "hidden" }}
       id="preload-top"
-      className="full-screen fixed z-[50] full-screen flex-center bg-gradient-to-tr from-[#bb9012] to-[#c9ac0b] overflow-hidden"
+      className="full-screen fixed z-[50] h-[100vh] flex-center bg-gradient-to-tr from-[#bb9012] to-[#c9ac0b] overflow-hidden"
     >
       <motion.div
         id="preloader-title"
@@ -81,7 +82,7 @@ const Preloader = ({ preloader, setPreloader }) => {
       <div
         style={{ transform: "translateY(60%)" }}
         id="preloader-round"
-        className="absolute bottom-0  w-[20%] h-[0%] rounded-tl-[300%] rounded-tr-[300%] rounded-bl-[300%] rounded-br-[300%] bg-offBlack "
+        className="absolute bottom-0 overflow-hidden w-[20%] h-[0%] rounded-tl-[300%] rounded-tr-[300%] rounded-bl-[300%] rounded-br-[300%] bg-offBlack "
       ></div>
     </section>
   );
