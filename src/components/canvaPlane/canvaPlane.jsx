@@ -100,13 +100,10 @@ export const useCanvasPlane = (preloader) => {
       }
     );
 
-    // window.addEventListener("beforeunload", () => {
-    //   window.scrollTo(0, 0);
-    // });
-
     // scroll animation started
     let scrollY = window.scrollY;
     let currentSection = 0;
+
     window.addEventListener("scroll", () => {
       scrollY = window.scrollY;
       const newSection = Math.round(scrollY / sizes.height);
@@ -150,25 +147,27 @@ export const useCanvasPlane = (preloader) => {
   }, []);
 
   useEffect(() => {
+    const scrollY = window.scrollY;
+    const newSection = Math.round(scrollY / sizes.height);
     if (!preloader && modelState) {
       gsap.to(modelState.rotation, {
         duration: 1,
-        x: movement[0].rotationX,
-        y: movement[0].rotationY,
-        z: movement[0].rotationZ,
+        x: movement[newSection].rotationX,
+        y: movement[newSection].rotationY,
+        z: movement[newSection].rotationZ,
         ease: Back.easeInOut(1),
       });
       gsap.to(modelState.position, {
         duration: 1,
-        x: movement[0].positionX,
-        y: movement[0].positionY,
-        z: movement[0].positionZ,
+        x: movement[newSection].positionX,
+        y: movement[newSection].positionY,
+        z: movement[newSection].positionZ,
       });
       gsap.to(modelState.scale, {
         duration: 1,
-        x: movement[0].scaleX,
-        y: movement[0].scaleY,
-        z: movement[0].scaleZ,
+        x: movement[newSection].scaleX,
+        y: movement[newSection].scaleY,
+        z: movement[newSection].scaleZ,
       });
     }
   }, [preloader, modelState]);
