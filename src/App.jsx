@@ -2,7 +2,6 @@ import { useState } from "react";
 import Preloader from "./components/preloader/preloader";
 import Canva from "./components/canvaPlane/canva";
 import FirstSection from "./components/firstSection/firstSec";
-import { ReactLenis } from "@studio-freight/react-lenis";
 import Navbar from "./components/navbar/nav";
 import SecondSection from "./components/secondSection/secondSection";
 import ThirdSection from "./components/thirdSection/thirdSection";
