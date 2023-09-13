@@ -4,6 +4,7 @@ export default {
   theme: {
     fontFamily: {
       orbitron: ["Orbitron", "sans-serif"],
+      rajdhani: ["Rajdhani", "sans-serif"],
     },
     extend: {
       backgroundColor: {

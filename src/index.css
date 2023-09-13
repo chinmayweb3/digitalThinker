@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Rajdhani:wght@600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -18,7 +18,8 @@ body {
 main {
   box-sizing: border-box;
   scroll-snap-type: y mandatory;
-  background-color: #deb887;
+  background: linear-gradient(45deg, #0000008f, transparent);
+  background-color: #2c3333;
   transition: 2s all;
 }
 
@@ -47,4 +48,8 @@ section {
   .navbar-cta {
     @apply h-full grid place-content-center text-center  px-[20px] hover:bg-white/25 duration-200 tracking-[3px] font-normal;
   }
+}
+
+.first-para-shadow {
+  text-shadow: 0 0 24px #ffffdb;
 }

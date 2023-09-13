@@ -21,7 +21,8 @@ const movement = [
     scaleX: 0.13,
     scaleY: 0.13,
     scaleZ: 0.13,
-    bg: "#deb887",
+    bg: "#2C3333",
+    color: "#FFFFFa",
   },
 
   {
@@ -34,7 +35,8 @@ const movement = [
     scaleX: 0.13,
     scaleY: 0.13,
     scaleZ: 0.13,
-    bg: "#aaa",
+    bg: "#526D82",
+    color: "#FFFF9D",
   },
   {
     rotationX: 0.5,
@@ -46,7 +48,8 @@ const movement = [
     scaleX: 0.3,
     scaleY: 0.3,
     scaleZ: 0.3,
-    bg: "#141414",
+    bg: "#395B64",
+    color: "#86B189",
   },
 ];
 
@@ -110,23 +113,32 @@ export const useCanvasPlane = (preloader) => {
       console.log("New section scrollY: " + newSection, currentSection);
       document.getElementById("main").style.backgroundColor = movement[newSection].bg;
 
+      gsap.to(".navbar-cta", {
+        duration: 1.2,
+        color: movement[newSection].color,
+      });
+      gsap.to(".nav-line", {
+        duration: 1.2,
+        backgroundColor: movement[newSection].color,
+      });
+
       if (!!model3d) {
         gsap.to(model3d.rotation, {
-          duration: 1.2,
+          duration: 2,
           x: movement[newSection].rotationX,
           y: movement[newSection].rotationY,
           z: movement[newSection].rotationZ,
           ease: Back.easeInOut(1),
         });
         gsap.to(model3d.position, {
-          duration: 1.2,
+          duration: 2,
           x: movement[newSection].positionX,
           y: movement[newSection].positionY,
           z: movement[newSection].positionZ,
           ease: Back.easeInOut(1),
         });
         gsap.to(model3d.scale, {
-          duration: 1.2,
+          duration: 2,
           ease: Back.easeInOut(1),
           x: movement[newSection].scaleX,
           y: movement[newSection].scaleY,
@@ -149,6 +161,12 @@ export const useCanvasPlane = (preloader) => {
   useEffect(() => {
     const scrollY = window.scrollY;
     const newSection = Math.round(scrollY / sizes.height);
+
+    gsap.to(".nav-text-font", {
+      duration: 1.2,
+      color: movement[newSection].color,
+    });
+
     if (!preloader && modelState) {
       gsap.to(modelState.rotation, {
         duration: 1,
