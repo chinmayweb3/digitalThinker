@@ -3,7 +3,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 
-import { GUI } from "dat.gui";
+// import { GUI } from "dat.gui";
 import { Back, gsap } from "gsap";
 import { useEffect, useState } from "react";
 
@@ -203,17 +203,17 @@ export const useCanvasPlane = (preloader) => {
   }, [preloader, modelState]);
 };
 
-const model3dGui = (model3d) => {
-  const gui = new GUI();
-  const model3drotation = gui.addFolder("model3d rotation");
-  const model3dpostion = gui.addFolder("model3d postion");
-  model3drotation.add(model3d.rotation, "x", -2, Math.PI * 2);
-  model3drotation.add(model3d.rotation, "y", -2, Math.PI * 2);
-  model3drotation.add(model3d.rotation, "z", -2, Math.PI * 2);
-  model3drotation.open();
+// const model3dGui = (model3d) => {
+//   const gui = new GUI();
+//   const model3drotation = gui.addFolder("model3d rotation");
+//   const model3dpostion = gui.addFolder("model3d postion");
+//   model3drotation.add(model3d.rotation, "x", -2, Math.PI * 2);
+//   model3drotation.add(model3d.rotation, "y", -2, Math.PI * 2);
+//   model3drotation.add(model3d.rotation, "z", -2, Math.PI * 2);
+//   model3drotation.open();
 
-  model3dpostion.add(model3d.position, "x", -2, Math.PI * 2);
-  model3dpostion.add(model3d.position, "y", -2, Math.PI * 2);
-  model3dpostion.add(model3d.position, "z", -2, Math.PI * 2);
-  model3dpostion.open();
-};
+//   model3dpostion.add(model3d.position, "x", -2, Math.PI * 2);
+//   model3dpostion.add(model3d.position, "y", -2, Math.PI * 2);
+//   model3dpostion.add(model3d.position, "z", -2, Math.PI * 2);
+//   model3dpostion.open();
+// };
