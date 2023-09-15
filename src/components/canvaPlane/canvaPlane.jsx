@@ -121,7 +121,7 @@ export const useCanvasPlane = (preloader) => {
       // console.log("New section scrollY: " + newSection, currentSection);
       document.getElementById("main").style.backgroundColor = movement[newSection].bg;
 
-      gsap.to(".navbar-cta", {
+      gsap.to([".navbar-cta", ".logo"], {
         duration: 1.2,
         color: movement[newSection].color,
       });
@@ -172,7 +172,7 @@ export const useCanvasPlane = (preloader) => {
     let currentSection = 0;
 
     if (!preloader && modelState) {
-      gsap.to(".navbar-cta", {
+      gsap.to([".navbar-cta", ".logo"], {
         duration: 1.2,
         color: movement[newSection].color,
       });
